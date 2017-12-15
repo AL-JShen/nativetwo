@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, PixelRatio, StatusBar } from 'react-native';
 import List from './List';
 import New from './New';
 
@@ -13,6 +13,10 @@ export default class App extends React.Component {
     this.grabList = this.grabList.bind(this);
   }
   
+  componentDidMount() {
+       StatusBar.setHidden(true);
+  }
+    
   grabList = (taskList) => {
     this.setState({
       taskList: taskList,
@@ -22,8 +26,10 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <List taskList={this.state.taskList}/>
-        <New grabList={this.grabList}/>
+        <ScrollView>
+          <List style={styles.list} taskList={this.state.taskList}/>
+        </ScrollView>
+        <New style={styles.new} grabList={this.grabList}/>
       </View>
     );
   }
@@ -32,8 +38,17 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#262626',
     justifyContent: 'center',
+    padding: PixelRatio.get() * 10,
   },
+  list: {
+    flex: 9,
+    borderWidth: 1,
+    borderColor: '#000',
+  },
+  new: {
+    flex: 1,
+  }
 });

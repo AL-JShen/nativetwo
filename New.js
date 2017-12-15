@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, TextInput, PixelRatio} from 'react-native';
 
 let taskList = [];
 
@@ -25,10 +25,14 @@ export default class New extends Component {
     return (
       <View style={styles.container}>
         <TextInput 
+          style={styles.input}
+          underlineColorAndroid={'transparent'}
           onChangeText={(text) => this.setState({text})}
           onSubmitEditing={this.createTask}
           enablesReturnKeyAutomatically={true}
+          blurOnSubmit={false}
           placeholder={'Create a new task.'}
+          placeholderTextColor={'#999'}
           value={this.state.text}
         />
       </View>
@@ -38,8 +42,12 @@ export default class New extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    position: fixed,
-    bottom: 0,
-  },
+    borderTopWidth: 1,
+    borderTopColor: '#009688',
+  }, 
+  input: {
+    backgroundColor: '#262626',
+    padding: PixelRatio.get() * 5,
+    color: '#999',
+  }
 });

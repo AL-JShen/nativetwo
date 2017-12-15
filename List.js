@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Task from './Task';
 
-let taskList = this.props.taskList;
-
 export default class List extends Component {
   
   render() {
+    let taskList = this.props.taskList;
     return (
       <View style={styles.container}>
         {taskList.map((task, index) => {
-          return <Task content={task}/>
+          return <Task 
+            key={index}
+            content={task}/>
         })}
       </View>
     );
@@ -22,3 +23,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+// Swipe actions: https://github.com/jshanson7/react-native-swipeable
+// Action button: https://github.com/mastermoo/react-native-action-button
