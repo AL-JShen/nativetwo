@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     borderTopColor: '#009688',
   }, 
   input: {
-    backgroundColor: '#262626',
+    backgroundColor: '#363636',
     padding: PixelRatio.get() * 5,
-    color: '#999',
+    color: '#ddd',
   }
 });

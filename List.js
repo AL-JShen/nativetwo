@@ -11,7 +11,9 @@ export default class List extends Component {
         {taskList.map((task, index) => {
           return <Task 
             key={index}
-            content={task}/>
+            itemNo={index}
+            content={task}
+            removeTask={this.props.removeTask}/>
         })}
       </View>
     );

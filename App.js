@@ -11,9 +11,10 @@ export default class App extends React.Component {
       taskList: [],
     };
     this.grabList = this.grabList.bind(this);
+    this.removeTask = this.removeTask.bind(this);
   }
   
-  componentDidMount() {
+  componentWillMount() {
        StatusBar.setHidden(true);
   }
     
@@ -23,11 +24,19 @@ export default class App extends React.Component {
     });
   }
   
+  removeTask = (key) => {
+    let newList = this.state.taskList;
+    newList.splice(key, 1);
+    this.setState({
+      taskList: newList,
+    });
+  }
+  
   render() {
     return (
       <View style={styles.container}>
         <ScrollView>
-          <List style={styles.list} taskList={this.state.taskList}/>
+          <List style={styles.list} taskList={this.state.taskList} removeTask={this.removeTask}/>
         </ScrollView>
         <New style={styles.new} grabList={this.grabList}/>
       </View>
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'space-between',
-    backgroundColor: '#262626',
+    backgroundColor: '#363636',
     justifyContent: 'center',
     padding: PixelRatio.get() * 10,
   },
